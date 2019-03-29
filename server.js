@@ -52,6 +52,7 @@ app.get("/", function (req, res) {
 
 // A GET route for scraping the echoJS website
 app.get("/scrape", function (req, res) {
+
   var found;
   var titleArr = [];
   db.Article.find({})
@@ -80,10 +81,13 @@ app.get("/scrape", function (req, res) {
         res.render("scrape", {
           articles: results
         });
-
       });
-
+    }).catch(function (err) {
+      // If an error occurred, log it
+      console.log(err);
     });
+
+
 });
 
 
